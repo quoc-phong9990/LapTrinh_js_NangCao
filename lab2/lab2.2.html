@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhập thông tin</title>
+</head>
+<body>
+
+  
+<script src="lab2.1_3.js"></script>
+
+
+<h1>text</h1>
+
+
+  <textarea id="inputText" rows="5" cols="50" placeholder="Nhập thông tin"></textarea>
+  <button onclick="convertToCamelCase()">goo</button>
+  <div id="output"></div>
+
+  <script>
+    function convertToCamelCase() {
+      const inputText = document.getElementById('inputText').value;
+      const variableList = inputText.split('\n');
+
+      const convertedVariables = variableList.map(variable => {
+        const words = variable.split('_');
+        const camelCaseWords = words.map((word, index) => (index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()));
+        return camelCaseWords.join('');
+      });
+
+      displayResult(convertedVariables);
+    }
+
+    function displayResult(convertedVariables) {    
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = '';
+
+      convertedVariables.forEach((variable, index) => {
+        const tickMarks = '✅'.repeat(index + 1);
+        const resultString = `${variable} ${tickMarks}`;
+        const resultElement = document.createElement('div');
+        resultElement.textContent = resultString;
+        outputDiv.appendChild(resultElement);
+      });
+    }
+
+// lab4
+(function () {
+      const header = document.querySelector('h1');
+      header.style.color = 'red';
+
+      document.querySelector('body').addEventListener('click', function () {
+        header.style.color = 'blue';
+      });
+    })();
+  </script>
+  
+
+
+</body>
+</html>
